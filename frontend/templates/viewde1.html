@@ -1,0 +1,52 @@
+{% extends "base1.html" %}
+{%block 'content'%}
+{%load  static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<form method="post" action="/tocart">
+    {%csrf_token%}
+<div class="flex-box">
+    {%for cre in creame%}
+       <div class="left">
+           <div class="big-img">
+               <img src="{{cre.image.url}}">
+           </div>
+       </div>
+
+       <input type="hidden" name="cid" value="{{cre.id}}"/>
+  <div class="right">
+       <div class="pname">{{cre.chillin_name}}</div>
+       <div class="ratings">
+                   <i class="fas fa-star"></i>
+                   <i class="fas fa-star"></i>
+                   <i class="fas fa-star"></i>
+                   <i class="fas fa-star"></i>
+                   <i class="fas fa-star-half-alt"></i>
+           </div>
+           <div class="text">
+            <p>{{cre.description}}</p>
+           </div>
+           <div class="price">{{cre.price}}</div>
+             
+               <div class="quantity">
+                   <p>Quantity </p>
+                   <select class="form-control" name="qty">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+               </div>
+              
+               <div class="btn-box">
+                   <button class="cart-btn"  type="submit">Add to Cart</button>
+                </div>
+               {%endfor%}
+   </div>
+</div>
+
+</form>
+
+{% endblock 'content' %} 

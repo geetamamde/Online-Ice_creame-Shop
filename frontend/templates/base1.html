@@ -1,0 +1,208 @@
+{%load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin  
+     <link rel="stylesheet" href="{% static 'css/style.css' %}"> */
+    
+    body{
+        background-color:rgb(232, 139, 154);
+        font-family: "Lato", sans-serif;
+    }
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+      background-color :#ffffff;
+      border-color:#ffffff;
+    }
+    .jumbotron {
+        margin-bottom: 0;
+        background-image: url('{% static "img/base1wall.jpg" %}') ;    
+        max-width: 100%;
+        height: auto;
+      }
+      .mainfooter{
+        background:#F2DCA2;
+      }
+        
+  </style>
+</head>
+<body>
+  <h1 style="background-color: #F2DCA2;">.............................................Start A New Day With New Flavour.................................</h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      {%if "uname" in request.session  %}
+      <a class="navbar-brand" href="#">Hiii,{{request.session.uname}}</a>
+      {%else%}
+      <a class="navbar-brand" href="#"></a>
+      {%endif%}
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Our Menu
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {%for ice in icey%}
+            <li><a href="/showice/{{ice.id}}">{{ice.category_name}}</a></li>
+            {%endfor%}
+           
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right"> 
+        
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">Your Account</span> </a>
+             <ul class="dropdown-menu"> 
+              <li><a href="/login">LogIn</a></li>
+              <li><a href="/signup">SignUp</a></li>
+             </ul></li>
+        {%if "uname" in request.session%}
+        <li><a href="/showcart"><span class="glyphicon glyphicon-shopping-cart">Cart </span></a></li>
+        {%else%}
+        <li><a><span></span></a></li>
+        {%endif%}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container text-center">
+      <h1>CHILLI'N</h1>      
+      <p>Like It ,Love It ,Lick It</p>
+    </div>
+</div>
+<br>
+{%block 'content'%}
+<center>
+<h1 style="background-color: #F2DCA2;"> View Menu</h1>
+</center>
+<div class="row">
+  {%for cre in creame%}
+  <div class="col-md-4">
+    <div class="thumbnail">
+        <div class="caption text-center">
+          <p>{{cre.chillin_name}}</p>
+        </div>
+        <img src="{{cre.image.url}}" alt="Lights" style="height:300px; width:300px">
+        <a href="/viewde1/{{cre.id}}"><p style="text-align:center">View Details</p></a>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+<br>
+<center>
+<h1 style="background-color: #F2DCA2;"> About To Launch </h1>
+</center>
+<div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+      
+          <img src="{% static 'img/atl1.jpg' %}" alt="Lights" style="height:500px; width:500px">
+          <div class="caption">
+            <p style="text-align:center">Blissful Bites</p>
+          </div>
+     
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+      
+            <img src="{% static 'img/alt2.jpg' %}" alt="Lights" style="height:500px; width:500px">
+          <div class="caption">
+            <p style="text-align:center">Creamy Confection</p>
+          </div>
+      
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        
+            <img src="{% static 'img/alt3.jpg' %}" alt="Lights" style="height:500px; width:500px">
+          <div class="caption">
+            <p style="text-align:center">Frozen Tempation</p>
+          </div>
+     
+      </div>
+    </div>
+  </div>
+
+  {% endblock 'content' %}
+  <center>
+    <h1 style="background-color: #F2DCA2;"> Explore More </h1>
+  </center>
+
+  <footer class="mainfooter" role="contentinfo">  
+    <div class="footer-middle">  
+    <div class="container">  
+      <div class="row">  
+        <div class="col-md-3 col-sm-6">  
+          <div class="footer-pad"> 
+            <i class='fas fa-ice-cream' style='font-size:48px;'></i> 
+            <h4> Our Moto</h4> 
+             <p>"You can't buy happiness, but you can buy ice cream. And that's kind of the same thing."</P>
+            </div>  
+        </div>  
+        <div class="col-md-3 col-sm-6">  
+          <div class="footer-pad">  
+            <h4>Quick Links </h4>  
+            <ul class="list-unstyled">  
+              <li> <a href="/">Home </a> </li>  
+              <li> <a href="/contact">Contact Us </a> </li>  
+              <li> <a href="/signout">Sign Out</a> </li>  
+               
+            </ul>  
+          </div>  
+        </div>  
+        <div class="col-md-3 col-sm-6">  
+          <div class="footer-pad">  
+            <h4> Address </h4>  
+             <p>2367 Mosaman Rd</p> 
+             <p>Northan cape ,Postmasburg</p>
+             <h4>+91-39743250</h4>
+             <p>mamdegeeta@gmail.com</p> 
+          </div>  
+        </div>  
+          <div class="col-md-3">  
+              <h4> Follow Us </h4>  
+              <ul class="social-network social-circle">  
+               <li> <a href="#" class="icoFacebook" title="Facebook"> <i class="fa fa-facebook"> </i> </a> </li>  
+               <li> <a href="#" class="icoLinkedin" title="Linkedin"> <i class="fa fa-linkedin"> </i> </a> </li>  
+               <li> <a href="#"> <i class="fa fa-youtube" aria-hidden="true"> </i> </a> </li>  
+              </ul>               
+      </div>  
+      </div> 
+      <hr> 
+      <div class="row">  
+      <div class="col-md-12 copy">  
+      <p class="text-center"> © Copyright 2023 - CHILLI'N.  All rights reserved. </p>  
+      </div>  
+      </div>  
+    </div>  
+    </div>  
+  </footer>
+</body>
+</html>
