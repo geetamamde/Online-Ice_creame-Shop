@@ -157,8 +157,9 @@ def viewde1(request,id):
 
 
 def contact(request):
+    icey = Category.objects.all()
     if(request.method == "GET"):
-        return render(request,"contact.html",{}) 
+        return render(request,"contact.html",{"icey":icey}) 
     else:
         try:
             contact_info = Contact_info()

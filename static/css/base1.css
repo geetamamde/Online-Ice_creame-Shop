@@ -1,0 +1,27 @@
+/* Base1.html */
+body{
+    background-color:rgb(232, 139, 154);
+    font-family: "Lato", sans-serif;
+}
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+  background-color :#ffffff;
+  border-color:#ffffff;
+}
+.jumbotron {
+    margin-bottom: 0;
+    background: url("/static/img/base1wall.jpg");
+    /* background-image: url('{% static "img/base1wall.jpg" %}') ;     */
+    max-width: 100%;
+    height: auto;
+  }
+.mainfooter{
+    background-color:#F2DCA2;
+  }
+
+.heading{
+    background-color: #F2DCA2;
+    text-align: center;
+}
+
